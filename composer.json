@@ -1,0 +1,6 @@
+{
+    "require": {
+        "jaeger/querylist": "^4.0",
+        "catfan/Medoo": "^1.5"
+    }
+}
