@@ -1,6 +1,6 @@
 <meta charset="utf8" />
 <?php
-
+set_time_limit(0);
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -25,7 +25,7 @@ $database = new medoo([
 $html = <<<STR
 STR;
 
-for ($i=1;$i<69;$i++){
+for ($i=3;$i<69;$i++){
     $url = 'http://www.mafengwo.cn/ajax/router.php';
     $post_data['sAct']       = 'KMdd_StructWebAjax|GetPoisByTag';
     $post_data['iMddid']      = '10208';
@@ -69,6 +69,7 @@ foreach ($list_data as $key=>$v){
 
     $detail_data = @crawl_data('http://www.mafengwo.cn'.$v['detail_url'],$detail_rule);
     //var_dump($list_data);
+
     //var_dump(strpos($list_data[$key]['detail_url'],'.'));
     //var_dump(strripos($list_data[$key]['detail_url'],'/'));
     echo $poiid=substr($list_data[$key]['detail_url'],strripos($list_data[$key]['detail_url'],'/')+1,strpos($list_data[$key]['detail_url'],'.')-strripos($list_data[$key]['detail_url'],'/')-1);
@@ -88,12 +89,14 @@ foreach ($list_data as $key=>$v){
 
     }
     foreach ($pic_data as $k=>$pic){
+
         //创建文件写入图片地址
-        create_file($i-$key,$pic['pics']."\r\n");
+        create_file($i.'-'.$key,$pic['pics']."\r\n");
         //下载图片
-        download($pic['pics'],$i-$key.'/');
+        download($pic['pics'],$i.'-'.$key.'/');
 
     }
+
 
 
 
